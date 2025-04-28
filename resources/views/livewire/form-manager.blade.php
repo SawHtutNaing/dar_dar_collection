@@ -1,4 +1,5 @@
-<div class="max-w-7xl mx-auto p-6" wire:ignore>
+
+<div class="max-w-7xl mx-auto p-6">
     <h1 class="text-2xl font-bold mb-4">Form Manager</h1>
 
     <!-- Create/Edit Form -->
@@ -25,6 +26,10 @@
         <button wire:click="{{ $isEditing ? 'update' : 'create' }}" class="bg-blue-500 text-white px-4 py-2 rounded-md">
             {{ $isEditing ? 'Update' : 'Create' }}
         </button>
+
+
+
+
         @if($isEditing)
             <button wire:click="resetForm" class="bg-gray-500 text-white px-4 py-2 rounded-md ml-2">Cancel</button>
         @endif
@@ -49,6 +54,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{ route('form-data.index', $form->id) }}" class="text-blue-500 hover:underline">View Data</a>
                             <a href="{{ route('form-data.report', $form->id) }}" class="text-purple-500 hover:underline ml-2">Report</a>
+
                             <button wire:click="edit({{ $form->id }})" class="text-green-500 hover:underline ml-2">Edit</button>
                             <button wire:click="delete({{ $form->id }})" class="text-red-500 hover:underline ml-2">Delete</button>
                         </td>
@@ -59,3 +65,4 @@
         {{ $forms->links() }}
     </div>
 </div>
+

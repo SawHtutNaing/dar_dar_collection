@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\CodeManager;
+use App\Livewire\FormDataEdit;
 use App\Livewire\FormDataManager;
 use App\Livewire\FormManager;
 use App\Livewire\TestLivewire;
@@ -30,7 +31,13 @@ Route::get('/', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/forms', FormManager::class)->name('forms.index');
     Route::get('/form-data/{formId}', FormDataManager::class)->name('form-data.index');
-    Route::get('/form-data/create/{formId}', FormDataManager::class)->name('form-data.create');
+    // Route::get('/form-data/create/{formId}', FormDataManager::class)->name('form-data.create');
+    // Route::get('/form-data/{formId}/create/{codeId}', FormDataManager::class)->name('form-data.create');
+    Route::get('/form-data/{formId}/create/{codeId?}', FormDataManager::class)->name('form-data.create');
+    Route::get('/form-data/create/{formId}/{codeId?}', FormDataManager::class)->name('form-data.create');
+    Route::get('/form-data/edit/{id}', FormDataEdit::class)->name('form-data.edit');
+
+    ;
     Route::get('/codes', CodeManager::class)->name('codes.index');
     Route::get('/form-data/{formId}/report', FormDataReport::class)->name('form-data.report');
 

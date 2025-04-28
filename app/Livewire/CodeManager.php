@@ -11,6 +11,8 @@ class CodeManager extends Component
     use WithPagination;
 
     public $code_name = '';
+    public $codeId = null;
+    public $isEditing = false;
 
     public function render()
     {
@@ -23,11 +25,47 @@ class CodeManager extends Component
         $this->validate(['code_name' => 'required|string|max:255']);
 
         Code::create(['code_name' => $this->code_name]);
-        $this->code_name = '';
+        $this->resetForm();
+        $this->resetPage(); // Reset pagination to refresh the data
+        session()->flash('message', 'Code created successfully.');
+    }
+
+    public function edit($id)
+    {
+        $code = Code::findOrFail($id);
+        $this->codeId = $id;
+        $this->code_name = $code->code_name;
+        $this->isEditing = true;
+    }
+
+    public function update()
+    {
+        $this->validate(['code_name' => 'required|string|max:255']);
+
+        $code = Code::findOrFail($this->codeId);
+        $code->update(['code_name' => $this->code_name]);
+        $this->resetForm();
+        $this->resetPage(); // Reset pagination to refresh the data
+        session()->flash('message', 'Code updated successfully.');
     }
 
     public function delete($id)
     {
         Code::findOrFail($id)->delete();
+        $this->resetPage(); // Reset pagination to refresh the data
+        session()->flash('message', 'Code deleted successfully.');
+    }
+
+    public function resetForm()
+    {
+        $this->code_name = '';
+        $this->codeId = null;
+        $this->isEditing = false;
+    }
+
+    public function cancelEdit()
+    {
+        $this->resetForm();
     }
 }
+
