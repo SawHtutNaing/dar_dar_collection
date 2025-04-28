@@ -24,7 +24,7 @@
 
         <div class="mb-4">
             <label for="customer_name" class="block text-sm font-medium text-gray-700">Customer Name</label>
-            <input wire:model="customer Social Media Handles
+
             <input wire:model="customer_name" id="customer_name" type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
             @error('customer_name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>

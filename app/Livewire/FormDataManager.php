@@ -43,6 +43,7 @@ class FormDataManager extends Component
 
     public function create()
     {
+
         $this->validate([
             'code_id' => 'required|exists:codes,id',
             'customer_name' => 'required|string|max:255',
@@ -61,7 +62,7 @@ class FormDataManager extends Component
             'status' => $this->status,
         ]);
 
-        $this->resetForm();
+        // $this->resetForm();
         session()->flash('message', 'Form data created successfully.');
     }
 
