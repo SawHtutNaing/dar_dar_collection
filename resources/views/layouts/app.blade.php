@@ -39,13 +39,18 @@
                                 <a href="{{ route('codes.index') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ Route::is('codes.*') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                     Codes
                                 </a>
+
+                                <a href="{{ route('users') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ Route::is('users') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    Users
+                                </a>
+
                             @else
-                                <a href="{{ route('login') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ Route::is('login') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                {{-- <a href="{{ route('login') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ Route::is('login') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                     Login
                                 </a>
                                 <a href="{{ route('register') }}" class="inline-flex items-center px-1 pt-1 border-b-2 {{ Route::is('register') ? 'border-indigo-400' : 'border-transparent' }} text-sm font-medium leading-5 text-gray-900 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                                     Register
-                                </a>
+                                </a> --}}
                             @endauth
                         </div>
                     </div>

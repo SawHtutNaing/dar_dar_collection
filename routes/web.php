@@ -8,6 +8,9 @@ use App\Livewire\FormDataManager;
 use App\Livewire\FormManager;
 use App\Livewire\TestLivewire;
 use App\Livewire\FormDataReport;
+use App\Livewire\Users;
+
+
 
 
 // Route::get('/', function () {
@@ -40,6 +43,7 @@ Route::middleware(['auth'])->group(function () {
     ;
     Route::get('/codes', CodeManager::class)->name('codes.index');
     Route::get('/form-data/{formId}/report', FormDataReport::class)->name('form-data.report');
+    Route::get('/users', Users::class)->name('users');
 
 });
 
