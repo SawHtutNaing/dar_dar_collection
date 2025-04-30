@@ -7,8 +7,9 @@ use App\Models\FormData;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\WithStyles;
 
-class SortedExport implements  FromCollection, WithHeadings, WithMapping
+class SortedExport implements  FromCollection, WithHeadings, WithMapping ,WithStyles
 {
     protected $formId;
     protected $startDate;
@@ -56,6 +57,14 @@ class SortedExport implements  FromCollection, WithHeadings, WithMapping
             $formData->remark,
             // $formData->status ? 'Order Confirmed' : 'Cancel',
             $formData->created_at->format('Y-m-d'),
+        ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            // Style the first row (headings) as bold
+            1 => ['font' => ['bold' => true]],
         ];
     }
 
