@@ -43,7 +43,7 @@ class FormDataEdit extends Component
             'customer_name' => 'required|string|max:255',
             'quantity' => 'required|integer|min:1',
             'remark' => 'nullable|string',
-            'status' => 'required|boolean',
+            // 'status' => 'required|boolean',
         ]);
 
         $formData = FormData::findOrFail($this->formDataId);

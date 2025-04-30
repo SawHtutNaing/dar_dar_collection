@@ -8,6 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\FormDataExport;
+use App\Exports\SortedExport;
 
 class FormDataReport extends Component
 {
@@ -21,8 +22,8 @@ class FormDataReport extends Component
     {
         $this->formId = $formId;
         // Set default date range (e.g., last 30 days)
-        $this->start_date = now()->subDays(30)->format('Y-m-d');
-        $this->end_date = now()->format('Y-m-d');
+        // $this->start_date = now()->subDays(30)->format('Y-m-d');
+        // $this->end_date = now()->format('Y-m-d');
     }
 
     public function render()
@@ -43,8 +44,15 @@ class FormDataReport extends Component
         return view('livewire.form-data-report', compact('form', 'formData'));
     }
 
+
     public function export()
     {
         return Excel::download(new FormDataExport($this->formId, $this->start_date, $this->end_date), 'form_data_' . $this->formId . '_' . now()->format('Ymd') . '.xlsx');
     }
+    public function Sortedexport()
+    {
+        return Excel::download(new SortedExport($this->formId, $this->start_date, $this->end_date), 'form_data_' . $this->formId . '_' . now()->format('Ymd') . '.xlsx');
+    }
+
+
 }

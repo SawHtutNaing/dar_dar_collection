@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('quantity');
             $table->text('remark')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->boolean('status')->default(1); // 1 = order_confirm, 0 = cancel
+            $table->boolean('status')->default(1)->nullable(); // 1 = order_confirm, 0 = cancel
             $table->timestamps();
         });
     }

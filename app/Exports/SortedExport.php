@@ -2,12 +2,13 @@
 
 namespace App\Exports;
 
+
 use App\Models\FormData;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class FormDataExport implements FromCollection, WithHeadings, WithMapping
+class SortedExport implements  FromCollection, WithHeadings, WithMapping
 {
     protected $formId;
     protected $startDate;
@@ -22,9 +23,7 @@ class FormDataExport implements FromCollection, WithHeadings, WithMapping
 
     public function collection()
     {
-        $query = FormData::where('form_name_id', $this->formId)->with('code')
-        ->orderBy('customer_name', 'asc')
-        ;
+        $query = FormData::where('form_name_id', $this->formId)->with('code');
 
         if ($this->startDate) {
             $query->whereDate('created_at', '>=', $this->startDate);
@@ -59,4 +58,5 @@ class FormDataExport implements FromCollection, WithHeadings, WithMapping
             $formData->created_at->format('Y-m-d'),
         ];
     }
+
 }

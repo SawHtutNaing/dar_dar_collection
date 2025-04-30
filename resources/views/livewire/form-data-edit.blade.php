@@ -38,14 +38,14 @@
             <textarea wire:model="remark" id="remark" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
             @error('remark') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
-        <div class="mb-4">
+        {{-- <div class="mb-4">
             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
             <select wire:model="status" id="status" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
                 <option value="1">Order Confirmed</option>
                 <option value="0">Cancel</option>
             </select>
             @error('status') <span class="text-redDave-500 text-sm">{{ $message }}</span> @enderror
-        </div>
+        </div> --}}
 
         <button wire:click="update" class="bg-blue-500 text-white px-4 py-2 rounded-md">Update</button>
         <a href="{{ route('form-data.create', ['formId' => $form->id]) }}" class="bg-gray-500 text-white px-4 py-2 rounded-md ml-2">Cancel</a>

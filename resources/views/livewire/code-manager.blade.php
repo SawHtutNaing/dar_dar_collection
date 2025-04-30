@@ -9,6 +9,12 @@
             <input wire:model="code_name" id="code_name" type="text" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
             @error('code_name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
+        <div class="mb-4">
+            <label for="quantity" class="block text-sm font-medium text-gray-700">Quantity</label>
+            <input wire:model="quantity" id="quantity" type="number" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+            @error('quantity') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+        </div>
+
         <button wire:click="{{ $isEditing ? 'update' : 'create' }}" class="bg-blue-500 text-white px-4 py-2 rounded-md">
             {{ $isEditing ? 'Update' : 'Create' }}
         </button>
@@ -27,6 +33,8 @@
                 <thead>
                     <tr>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code Name</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
@@ -34,6 +42,7 @@
                     @foreach($codes as $code)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $code->code_name }}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">{{ $code->quantity }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <button wire:click="edit({{ $code->id }})" class="text-green-500 hover:underline">Edit</button>
                                 <button wire:click="delete({{ $code->id }})" class="text-red-500 hover:underline ml-2">Delete</button>

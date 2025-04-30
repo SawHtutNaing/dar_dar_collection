@@ -126,6 +126,11 @@
                 </div>
             </div>
         </nav>
+        <div class="sm:hidden px-4 py-2">
+            <button onclick="history.back()" class="inline-flex items-center px-3 py-2 bg-indigo-600 text-white rounded-md text-sm font-medium hover:bg-indigo-500 transition">
+                ← Back
+            </button>
+        </div>
 
         <!-- Page Content -->
         <main>
