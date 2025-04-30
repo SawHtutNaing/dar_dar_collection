@@ -46,6 +46,13 @@ class FormDataEdit extends Component
             // 'status' => 'required|boolean',
         ]);
 
+        $code = Code::findOrFail($this->code_id);
+        $formData = FormData::where('id', $this->formDataId)->first();
+        if ( ($code->quantity +  $formData->quantity -  $code->formData->sum('quantity') ) < $this->quantity) {
+            session()->flash('error', 'Insufficient quantity available.');
+            return;
+        }
+
         $formData = FormData::findOrFail($this->formDataId);
         $formData->update([
             'code_id' => $this->code_id,

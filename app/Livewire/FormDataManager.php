@@ -44,6 +44,12 @@ class FormDataManager extends Component
     public function create()
     {
 
+        $code = Code::findOrFail($this->code_id);
+
+        if (($code->quantity -  $code->formData->sum('quantity')) < $this->quantity) {
+            session()->flash('error', 'Insufficient quantity available.');
+            return;
+        }
         $this->validate([
             'code_id' => 'required|exists:codes,id',
             'customer_name' => 'required|string|max:255',

@@ -7,6 +7,11 @@
             {{ session('message') }}
         </div>
     @endif
+    @if (session()->has('error'))
+    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+        {{ session('error') }}
+    </div>
+@endif
 
     <div class="bg-white p-6 rounded-lg shadow-md mb-6">
         <h2 class="text-xl font-semibold mb-4">Edit Form Data</h2>

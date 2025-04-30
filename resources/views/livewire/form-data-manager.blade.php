@@ -7,6 +7,14 @@
             {{ session('message') }}
         </div>
     @endif
+    @if (session()->has('error'))
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6" role="alert">
+            {{ session('error') }}
+        </div>
+    @endif
+
+
+
 
     <!-- Code Selection or Create Form -->
     @if(empty($code_id))
@@ -22,7 +30,7 @@
                             <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Code</th>
                             <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Quantity</th>
                             <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Available</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Sold</th>
+                            {{-- <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Sold</th> --}}
                             <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Left</th>
                         </tr>
                     </thead>
@@ -35,11 +43,13 @@
                                     </button>
                                 </td>
                                 <td class="px-4 py-3">{{ $code->quantity }}</td>
-                                <td class="px-4 py-3">{{ $code->formData->sum('quantity') }}</td>
-                                <td class="px-4 py-3">{{ $code->quantity - $code->formData->sum('quantity') }}</td>
                                 <td class="px-4 py-3">
                                     {{ $code->formData->sum('quantity') > $code->quantity ? 0 : $code->quantity - $code->formData->sum('quantity') }}
                                 </td>
+                                {{-- <td class="px-4 py-3">{{ $code->quantity - $code->formData->sum('quantity') }}</td> --}}
+                                <td class="px-4 py-3">{{ $code->formData->sum('quantity') }}</td>
+
+
                             </tr>
                         @endforeach
                     </tbody>
