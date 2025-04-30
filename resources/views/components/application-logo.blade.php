@@ -4,6 +4,6 @@
 </svg> --}}
 
 <div class="flex items-center justify-center w-screen">
-    <img src="{{ asset('favicon.ico') }}" alt="Favicon" class=" w-[5%]  h-[5%]">
+    <img src="{{ asset('favicon.ico') }}" alt="Favicon" class=" w-[5rem]  h-[5rem]">
 </div>
 

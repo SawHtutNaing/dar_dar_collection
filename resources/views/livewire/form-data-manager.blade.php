@@ -19,7 +19,7 @@
     <!-- Code Selection or Create Form -->
     @if(empty($code_id))
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-xl font-semibold mb-4">Code</h2>
+            <h2 class="text-xl font-semibold mb-4">Summary</h2>
             @if($codes->isEmpty())
                 <p class="text-gray-500">No codes attached to this form.</p>
             @else
@@ -29,8 +29,8 @@
                         <tr>
                             <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Code</th>
                             <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Quantity</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Available</th>
-                            {{-- <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Sold</th> --}}
+                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Sold</th>
+                            {{-- <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Available</th> --}}
                             <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Left</th>
                         </tr>
                     </thead>
@@ -43,11 +43,11 @@
                                     </button>
                                 </td>
                                 <td class="px-4 py-3">{{ $code->quantity }}</td>
+                                <td class="px-4 py-3">{{ $code->formData->sum('quantity') }}</td>
                                 <td class="px-4 py-3">
                                     {{ $code->formData->sum('quantity') > $code->quantity ? 0 : $code->quantity - $code->formData->sum('quantity') }}
                                 </td>
                                 {{-- <td class="px-4 py-3">{{ $code->quantity - $code->formData->sum('quantity') }}</td> --}}
-                                <td class="px-4 py-3">{{ $code->formData->sum('quantity') }}</td>
 
 
                             </tr>

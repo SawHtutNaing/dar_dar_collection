@@ -98,7 +98,7 @@
                                 <a href="{{ route('form-data.report', $form->id) }}" class="text-purple-500 hover:underline">Report</a>
                                 {{-- <a href="{{ route('form-data.report', $form->id) }}" class="text-purple-500 hover:underline">Sorted</a> --}}
                                 <button wire:click="edit({{ $form->id }})" class="text-green-500 hover:underline">Edit</button>
-                                <button wire:click="delete({{ $form->id }})" class="text-red-500 hover:underline">Delete</button>
+                                <button wire:confirm='Confirm Delete ' wire:click="delete({{ $form->id }})" class="text-red-500 hover:underline">Delete</button>
                             </div>
                         </td>
                     </tr>
