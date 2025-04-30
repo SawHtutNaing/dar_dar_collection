@@ -23,7 +23,6 @@ class FormDataExport implements FromCollection, WithHeadings, WithMapping
     public function collection()
     {
         $query = FormData::where('form_name_id', $this->formId)->with('code')
-        ->orderBy('customer_name', 'asc')
         ;
 
         if ($this->startDate) {

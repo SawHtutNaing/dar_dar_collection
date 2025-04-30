@@ -47,3 +47,15 @@ excel => column => cus , co , quantity ,date
 
 raw => ok
 softed => customer_name sorted
+
+
+form ဖြည့်တဲ့နေရာမှာ  summary table ထည့်ပေးပါ
+code ရွေးပြီးရင် code ရွေးထားတဲ့ code က ဟာတွေပဲပေါ်ပါ
+
+
+wire;confirm on delete 
+
+cherry lann ပြင်ရန်
+
+
+

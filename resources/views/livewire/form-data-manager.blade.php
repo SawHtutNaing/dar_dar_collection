@@ -61,11 +61,45 @@
     @else
         <!-- Create Form -->
         <div class="bg-white p-6 rounded-lg shadow-md mb-6">
-            <h2 class="text-xl font-semibold mb-4"> {{ $codes->firstWhere('id', $code_id)->code_name ?? 'Unknown' }}</h2>
+            {{-- <h2 class="text-xl font-semibold mb-4"> {{
+                  ?? 'Unknown'
+                  }}</h2> --}}
+
+                  <div class="overflow-x-auto rounded-lg shadow-md">
+                    <table class="min-w-full divide-y divide-gray-200 bg-white">
+                        <thead class="bg-gray-100 sticky top-0 z-10">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Code</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Quantity</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Sold</th>
+                                {{-- <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Available</th> --}}
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Left</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100">
+
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-4 py-3">
+                                        {{ $codes->firstWhere('id', $code_id)->code_name }}
+                                    </td>
+                                    <td class="px-4 py-3">{{ $codes->firstWhere('id', $code_id)->quantity }}</td>
+                                    <td class="px-4 py-3">{{ $codes->firstWhere('id', $code_id)->formData->sum('quantity') }}</td>
+                                    <td class="px-4 py-3">
+                                        {{ $codes->firstWhere('id', $code_id)->formData->sum('quantity') > $codes->firstWhere('id', $code_id)->quantity ? 0 : $codes->firstWhere('id', $code_id)->quantity - $codes->firstWhere('id', $code_id)->formData->sum('quantity') }}
+                                    </td>
+                                    {{-- <td class="px-4 py-3">{{ $code->quantity - $code->formData->sum('quantity') }}</td> --}}
+
+
+                                </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
 
             <div class="mb-4">
-                <label class="block text-sm font-medium text-gray-700">Selected Code</label>
-                <p class="mt-1 text-gray-900">{{ $codes->firstWhere('id', $code_id)->code_name ?? 'Unknown' }}</p>
+                {{-- <label class="block text-sm font-medium text-gray-700">Selected Code</label> --}}
+                {{-- <p class="mt-1 text-gray-900">{{ $codes->firstWhere('id', $code_id)->code_name ?? 'Unknown' }}</p> --}}
                 <input type="hidden" wire:model="code_id" value="{{ $code_id }}">
                 @error('code_id') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
@@ -119,6 +153,7 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($formData as $data)
                         <tr>
+
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->code->code_name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->customer_name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->quantity }}</td>

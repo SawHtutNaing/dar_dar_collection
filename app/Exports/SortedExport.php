@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithStyles;
-
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 class SortedExport implements  FromCollection, WithHeadings, WithMapping ,WithStyles
 {
     protected $formId;
@@ -24,7 +24,9 @@ class SortedExport implements  FromCollection, WithHeadings, WithMapping ,WithSt
 
     public function collection()
     {
-        $query = FormData::where('form_name_id', $this->formId)->with('code');
+        $query = FormData::where('form_name_id', $this->formId)->with('code')
+        ->orderBy('customer_name', 'asc')
+        ;
 
         if ($this->startDate) {
             $query->whereDate('created_at', '>=', $this->startDate);

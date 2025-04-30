@@ -19,7 +19,7 @@
                 <button wire:click="export" class="bg-green-500 text-white px-4 py-2 rounded-md">Raw Excel </button>
             </div>
             <div class="flex items-end">
-                <button wire:click="Sortedexport" class="bg-yellow-500 text-white px-4 py-2 rounded-md">Sorted Excel</button>
+                <button wire:click="Sortedexport" class="bg-blue-500 text-white px-4 py-2 rounded-md">Final Excel</button>
             </div>
 
 

@@ -26,6 +26,7 @@ class FormDataManager extends Component
 
     public function mount(int $formId, ?int $codeId = null): void
     {
+
         $this->formId = $formId;
         if ($codeId) {
             $this->code_id = $codeId;
@@ -35,7 +36,19 @@ class FormDataManager extends Component
     public function render()
     {
         $form = FormName::findOrFail($this->formId);
+
+
+        if($this->code_id){
+            $formData = FormData::where('form_name_id', $this->formId)->where('code_id',$this->code_id)->with('code')->paginate(10);
+
+
+
+        }else{
         $formData = FormData::where('form_name_id', $this->formId)->with('code')->paginate(10);
+
+        }
+
+
         $codes = $form->codes;
 
         return view('livewire.form-data-manager', compact('form', 'formData', 'codes'));
