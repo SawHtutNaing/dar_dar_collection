@@ -17,7 +17,7 @@ class CodeManager extends Component
 
     public function render()
     {
-        $codes = Code::paginate(20);
+        $codes = Code::paginate(40);
         return view('livewire.code-manager', compact('codes'));
     }
 
