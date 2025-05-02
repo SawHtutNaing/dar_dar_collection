@@ -36,6 +36,7 @@
             <table class="min-w-full divide-y divide-gray-200">
                 <thead>
                     <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">No</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
                         <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
@@ -45,8 +46,11 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach($formData as $data)
+                    @foreach($formData as $index =>  $data)
                         <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ ($formData->currentPage() - 1) * $formData->perPage() + $index + 1 }}
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->code->code_name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->customer_name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->quantity }}</td>
