@@ -63,7 +63,7 @@
                             <button wire:click="edit({{ $user->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
                                 Edit
                             </button>
-                            <button wire:click="delete({{ $user->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded ml-2">
+                            <button  wire:confirm='Are you sure you want to delete this user?'   wire:click="delete({{ $user->id }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded ml-2">
                                 Delete
                             </button>
                         </td>
