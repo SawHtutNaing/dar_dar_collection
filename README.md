@@ -59,3 +59,13 @@ cherry lann ပြင်ရန်
 
 
 
+code မှာ no ထည့်
+code မှာ delete confirm ထည့်
+summary no  ထည့်
+formdata no ထည့်
+
+
+
+summary မှာပေါင်းခြင်လေးတွေထည့်ပေးပါ
+
+

@@ -23,37 +23,65 @@
             @if($codes->isEmpty())
                 <p class="text-gray-500">No codes attached to this form.</p>
             @else
+
+            @php
+    $totalQuantity = $codes->sum('quantity');
+    $totalSold = $codes->sum(fn($code) => $code->formData->sum('quantity'));
+    $totalLeft = $totalQuantity - $totalSold;
+@endphp
+<table class="min-w-full bg-white mb-4 border border-gray-200">
+    <thead class="bg-gray-100">
+        <tr>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Total Quantity</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Total Sold</th>
+            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Total Left</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td class="px-4 py-2">{{ $totalQuantity }}</td>
+            <td class="px-4 py-2">{{ $totalSold }}</td>
+            <td class="px-4 py-2">{{ $totalLeft < 0 ? 0 : $totalLeft }}</td>
+        </tr>
+    </tbody>
+</table>
             <div class="overflow-x-auto rounded-lg shadow-md">
-                <table class="min-w-full divide-y divide-gray-200 bg-white">
-                    <thead class="bg-gray-100 sticky top-0 z-10">
-                        <tr>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Code</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Quantity</th>
-                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Sold</th>
-                            {{-- <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Available</th> --}}
-                            <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Left</th>
-                        </tr>
-                    </thead>
-                    <tbody class="divide-y divide-gray-100">
-                        @foreach($codes as $code)
-                            <tr class="hover:bg-gray-50 transition">
-                                <td class="px-4 py-3">
-                                    <button wire:click="$set('code_id', {{ $code->id }})" class="text-blue-600 hover:underline font-medium">
-                                        {{ $code->code_name }}
-                                    </button>
-                                </td>
-                                <td class="px-4 py-3">{{ $code->quantity }}</td>
-                                <td class="px-4 py-3">{{ $code->formData->sum('quantity') }}</td>
-                                <td class="px-4 py-3">
-                                    {{ $code->formData->sum('quantity') > $code->quantity ? 0 : $code->quantity - $code->formData->sum('quantity') }}
-                                </td>
-                                {{-- <td class="px-4 py-3">{{ $code->quantity - $code->formData->sum('quantity') }}</td> --}}
-
-
+                <div class=' h-[20rem] overflow-y-scroll'>
+                    <table class="min-w-full divide-y divide-gray-200 bg-white">
+                        <thead class="bg-gray-100 sticky top-0 z-10">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">No</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Code</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Quantity</th>
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Sold</th>
+                                {{-- <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Available</th> --}}
+                                <th class="px-4 py-3 text-left text-sm font-medium text-gray-700">Left</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody class="divide-y divide-gray-100 h-[4rem] overflow-y-scroll">
+                            @foreach($codes as $index =>  $code)
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-4 py-3">
+                                {{ $index + 1 }}
+                                    </td>
+                                    <td class="px-4 py-3">
+                                        <button wire:click="$set('code_id', {{ $code->id }})" class="text-blue-600 hover:underline font-medium">
+                                            {{ $code->code_name }}
+                                        </button>
+                                    </td>
+                                    <td class="px-4 py-3">{{ $code->quantity }}</td>
+                                    <td class="px-4 py-3">{{ $code->formData->sum('quantity') }}</td>
+                                    <td class="px-4 py-3">
+                                        {{ $code->formData->sum('quantity') > $code->quantity ? 0 : $code->quantity - $code->formData->sum('quantity') }}
+                                    </td>
+                                    {{-- <td class="px-4 py-3">{{ $code->quantity - $code->formData->sum('quantity') }}</td> --}}
+
+
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             @endif
@@ -155,7 +183,8 @@
                     @foreach($formData as  $index => $data)
                         <tr>
 
-                            <td class="px-6 py-4 whitespace-nowrap">                            {{ ($formData->currentPage() - 1) * $formData->perPage() + $index + 1 }}
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                        {{ ($formData->currentPage() - 1) * $formData->perPage() + $index + 1 }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->code->code_name }}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{ $data->customer_name }}</td>
