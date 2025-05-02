@@ -63,6 +63,8 @@ class FormDataEdit extends Component
         ]);
 
         session()->flash('message', 'Form data updated successfully.');
-        return redirect()->route('form-data.create', ['formId' => $this->formId]);
+        // return redirect()->route('form-data.create', ['formId' => ]);
+        return redirect()->route('form-data.create', ['formId' => $this->formId, 'codeId' => $this->code_id]);
+
     }
 }

@@ -83,6 +83,9 @@ class FormDataManager extends Component
 
         // $this->resetForm();
         session()->flash('message', 'Form data created successfully.');
+        $this->customer_name = '';
+        $this->quantity = '';
+        $this->remark = '';
     }
 
     public function delete($id)
