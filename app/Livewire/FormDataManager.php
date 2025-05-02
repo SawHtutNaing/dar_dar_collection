@@ -39,12 +39,12 @@ class FormDataManager extends Component
 
 
         if($this->code_id){
-            $formData = FormData::where('form_name_id', $this->formId)->where('code_id',$this->code_id)->with('code')->paginate(10);
+            $formData = FormData::where('form_name_id', $this->formId)->where('code_id',$this->code_id)->with('code')->paginate(20);
 
 
 
         }else{
-        $formData = FormData::where('form_name_id', $this->formId)->with('code')->paginate(10);
+        $formData = FormData::where('form_name_id', $this->formId)->with('code')->paginate(20);
 
         }
 

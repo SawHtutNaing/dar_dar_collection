@@ -18,7 +18,7 @@ class FormManager extends Component
 
     public function render()
     {
-        $forms = FormName::with('codes')->paginate(10);
+        $forms = FormName::with('codes')->paginate(20);
         $codes = Code::all();
 
         return view('livewire.form-manager', compact('forms', 'codes'));

@@ -39,7 +39,7 @@ class FormDataReport extends Component
             $query->whereDate('created_at', '<=', $this->end_date);
         }
 
-        $formData = $query->paginate(10);
+        $formData = $query->paginate(20);
 
         return view('livewire.form-data-report', compact('form', 'formData'));
     }

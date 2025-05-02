@@ -69,3 +69,6 @@ formdata no ထည့်
 summary မှာပေါင်းခြင်လေးတွေထည့်ပေးပါ
 
 
+
+
+form data ->edit လုပ်ပြီးရင်pagination ပါ တဲ့ link ကိုပြန်ရောက် , ဉပမာ -> no 70 update -> and the page will at no 70 view
