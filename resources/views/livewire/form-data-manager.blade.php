@@ -193,7 +193,7 @@
                             {{-- <td class="px-6 py-4 whitespace-nowrap">{{ $data->status ? 'Order Confirmed' : 'Cancel' }}</td> --}}
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <a href="{{ route('form-data.edit', $data->id) }}" class="text-green-500 hover:underline">Edit</a>
-                                <button wire:click="delete({{ $data->id }})" class="text-red-500 hover:underline ml-2">Delete</button>
+                                <button wire:confirm='Are you sure you want to delete this form ?'  wire:click="delete({{ $data->id }})" class="text-red-500 hover:underline ml-2">Delete</button>
                             </td>
                         </tr>
                     @endforeach
