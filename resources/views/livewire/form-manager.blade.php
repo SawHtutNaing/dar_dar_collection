@@ -88,7 +88,9 @@
                             {{-- {{ $form->codes->pluck('code_name')->implode(', ') }} --}}
                             <ul class="list-disc list-inside text-sm text-gray-700">
                                 @foreach ($form->codes as $code)
-                                    <li>{{ $code->code_name }}</li>
+                                @if(is_null($code->d_at))
+    <li>{{ $code->code_name }}</li>
+@endif
                                 @endforeach
                             </ul>
                         </td>

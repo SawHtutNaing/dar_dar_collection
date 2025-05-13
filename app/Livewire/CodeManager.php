@@ -17,7 +17,7 @@ class CodeManager extends Component
 
     public function render()
     {
-        $codes = Code::paginate(40);
+        $codes = Code::whereNull('d_at')->paginate(40);
         return view('livewire.code-manager', compact('codes'));
     }
 
@@ -53,7 +53,10 @@ class CodeManager extends Component
 
     public function delete($id)
     {
-        Code::findOrFail($id)->delete();
+        $code = Code::findOrFail($id);
+        $code->d_at = now();
+        $code->update();
+
         $this->resetPage(); // Reset pagination to refresh the data
         session()->flash('message', 'Code deleted successfully.');
     }
